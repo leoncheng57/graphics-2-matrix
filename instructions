@@ -1,0 +1,25 @@
+http://www.stuycs.org/courses/ml6/dw/work
+
+You must do the following things:
+Write correct, functioning code.
+Upload a new picture to the gallery
+
+You will hand craft a program that will apply transformations to a point matrix, given either a script for input or a gui
+
+In addition to the point matrix your programs should currently have, you will add a master transformation matrix (4x4), that will keep track of the transformations to be applied.
+Write code to set up a point matrix with the following functionality:
+add a point to a point matrix
+add an edge to a point matrix (should call your add point routine)
+go through a point matrix and draw the lines stored in the matrix (should call your draw line routine)
+Write code to work with matrices:
+print out a matrix
+scalar matrix multiplication
+creation of an identity matrix
+matrix multiplication
+create a translation matrix
+create a scale matrix
+create a rotation matrix about the x-axis
+create a rotation matrix about the y-axis
+create a rotation matrix about the z-axis
+Note: The trig functions in java, python and c take radians as parameters, but you should assume degree input, make sure to convert or things won't look right.
+github link: https://github.com/mks66/matrix.git
