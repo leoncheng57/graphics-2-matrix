@@ -131,16 +131,24 @@ Returns:
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
-  struct matrix ret;
-  ret = new_matrix(a->cols, b->rows);
+  struct matrix prod;
+  prod = new_matrix(a->cols, b->rows);
 
-  a->m[0]
-  a->m[1]
-  a->m[2]
-  a->m[3]
+  for (h=0;h < a->rows;h++){
+    double * row = a[h];
 
-  b->m
-
+    for (i=0;i<b->rows;i++){
+      int sum; //sum of row*col
+      for (j=0; j<b->cols;j++){
+        sum += a[h][j] * b[i][j];
+        //h, for the row, stays the same
+        //i, for the col, stays the same
+      }
+      //one complete col
+      prod[h][i] = sum;
+    }
+  }
+  b=prod;
 }
 
 
