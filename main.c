@@ -17,12 +17,18 @@ int main() {
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
 
-  // testing print
+  //testing
   ident(edges);
-  print_matrix(edges);
   scalar_mult(9, edges);
-  printf("\n");
   print_matrix(edges);
+
+  ident(transform);
+  print_matrix(transform);
+
+  matrix_mult(edges, transform);
+  print_matrix(transform);
+
+
 
   free_matrix( transform );
   free_matrix( edges );

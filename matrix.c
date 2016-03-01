@@ -87,6 +87,9 @@ void print_matrix(struct matrix *m) {
     }
     printf("\n");
   }
+  printf("\n");
+  //extra space at the end to separate if two matrices
+  //are printed back to back in the terminal
 }
 
 /*-------------- void ident() --------------
@@ -131,24 +134,30 @@ Returns:
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
-  struct matrix prod;
-  prod = new_matrix(a->cols, b->rows);
+  struct matrix * result;
+  result = new_matrix(a->cols, b->rows);
 
+  int h, i, j;
   for (h=0;h < a->rows;h++){
-    double * row = a[h];
+    double * row = a->m[h];
 
     for (i=0;i<b->rows;i++){
       int sum; //sum of row*col
       for (j=0; j<b->cols;j++){
-        sum += a[h][j] * b[i][j];
+        sum += row[j] * b->m[i][j];
+        printf("row[%f]: %f \n", j, row[j]);
+        printf("b->m[%f][%f]: %f \n", i, j, b->m[i][j]);
+        printf("row[j] * b->m[i][j]: %f\n", row[j] * b->m[i][j]);
         //h, for the row, stays the same
         //i, for the col, stays the same
       }
       //one complete col
-      prod[h][i] = sum;
+      result->m[h][i] = sum;
+      printf("sum=m[%f][%f]=%f\n",h, i, sum );
+      printf("\n");
     }
   }
-  b=prod;
+  b=result;
 }
 
 
