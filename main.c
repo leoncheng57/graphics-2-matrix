@@ -15,19 +15,20 @@ int main() {
   struct matrix *transform;
 
   edges = new_matrix(4, 4);
-  transform = new_matrix(4, 4);
+  // transform = new_matrix(4, 4);
+  transform = make_rotX(30);
 
   //testing
+  print_matrix(transform);
+
   ident(edges);
   scalar_mult(9, edges);
   print_matrix(edges);
 
-  ident(transform);
-  print_matrix(transform);
 
-  matrix_mult(edges, transform);
-  print_matrix(transform);
-
+  matrix_mult(transform, edges);
+  print_matrix(edges);
+  //end testing
 
 
   free_matrix( transform );

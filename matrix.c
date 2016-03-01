@@ -1,3 +1,5 @@
+#define PI 3.141592653589793238462643383 //defining PI
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -144,17 +146,15 @@ void matrix_mult(struct matrix *a, struct matrix *b) {
     for (i=0;i<b->rows;i++){
       double sum = 0; //sum of row*col
       for (j=0; j<b->cols;j++){
-        printf("row[%d]: %f \n", j, row[j]);
-        printf("b->m[%d][%d]: %f \n", i, j, b->m[i][j]);
-        printf("row[j] * b->m[i][j]: %f\n", row[j] * b->m[i][j]);
+        // printf("row[%d]: %f \n", j, row[j]);
+        // printf("b->m[%d][%d]: %f \n", i, j, b->m[i][j]);
+        // printf("row[j] * b->m[i][j]: %f\n", row[j] * b->m[i][j]);
         sum += row[j] * b->m[i][j];
-        //h, for the row, stays the same
-        //i, for the col, stays the same
       }
       //one complete col
       result->m[h][i] = sum;
-      printf("sum=m[%d][%d]=%f\n", h, i, sum );
-      printf("\n");
+      // printf("sum=m[%d][%d]=%f\n", h, i, sum );
+      // printf("\n");
     }
   }
   //Copy result matrix to b
@@ -191,6 +191,12 @@ Returns: The translation matrix created using x, y and z
 as the translation offsets.
 ====================*/
 struct matrix * make_translate(double x, double y, double z) {
+  struct matrix * result = new_matrix(4, 4);
+  ident(result);
+  result->m[0][3] = x;
+  result->m[1][3] = y;
+  result->m[2][3] = z;
+  return result;
 }
 
 /*======== struct matrix * make_scale() ==========
@@ -201,6 +207,12 @@ Returns: The translation matrix creates using x, y and z
 as the scale factors
 ====================*/
 struct matrix * make_scale(double x, double y, double z) {
+  struct matrix * result = new_matrix(4, 4);
+  result->m[0][0] = x;
+  result->m[1][1] = y;
+  result->m[2][2] = z;
+  result->m[3][3] = 1;
+  return result;
 }
 
 /*======== struct matrix * make_rotX() ==========
@@ -210,6 +222,16 @@ Returns: The rotation matrix created using theta as the
 angle of rotation and X as the axis of rotation.
 ====================*/
 struct matrix * make_rotX(double theta) {
+  //TODO: FIX THIS!
+  theta = theta*180/(PI); //converting from rad to deg
+  struct matrix * result = new_matrix(4, 4);
+  result->m[0][0] = 1;
+  result->m[1][1] = cos(theta);
+  result->m[2][1] = -sin(theta);
+  result->m[1][2] = sin(theta);
+  result->m[2][2] = cos(theta);
+  result->m[3][3] = 1;
+  return result;
 }
 
 /*======== struct matrix * make_rotY() ==========
