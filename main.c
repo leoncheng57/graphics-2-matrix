@@ -16,7 +16,7 @@ int main() {
 
   edges = new_matrix(4, 4);
   // transform = new_matrix(4, 4);
-  transform = make_rotX(30);
+  transform = make_rotZ(30);
 
   //testing
   print_matrix(transform);
