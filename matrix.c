@@ -222,9 +222,8 @@ Returns: The rotation matrix created using theta as the
 angle of rotation and X as the axis of rotation.
 ====================*/
 struct matrix * make_rotX(double theta) {
-  //TODO: FIX THIS!
-  theta = theta*180/(PI); //converting from rad to deg
   struct matrix * result = new_matrix(4, 4);
+  theta = theta * PI/180; //converting from deg to rad
   result->m[0][0] = 1;
   result->m[1][1] = cos(theta);
   result->m[2][1] = -sin(theta);
