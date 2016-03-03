@@ -16,6 +16,12 @@ int main() {
 
   //testing
   edges = new_matrix(4, 4);
+  add_point(edges, 123, 421, 312);
+  add_point(edges, 123, 421, 312);
+  add_point(edges, 123, 421, 312);
+  add_point(edges, 123, 421, 312);
+  add_point(edges, 123, 421, 312);
+  add_point(edges, 12903,421, 532);
   // ident(edges);
   // scalar_mult(9, edges);
   print_matrix(edges);

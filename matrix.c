@@ -1,5 +1,3 @@
-#define PI 3.141592653589793238462643383 //defining PI
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -60,7 +58,7 @@ Inputs:  struct matrix *m
 Returns:
 
 Reallocates the memory for m->m such that it now has
-newcols number of collumns
+newcols number of columns
 ====================*/
 void grow_matrix(struct matrix *m, int newcols) {
 
@@ -223,7 +221,7 @@ angle of rotation and X as the axis of rotation.
 ====================*/
 struct matrix * make_rotX(double theta) {
   struct matrix * result = new_matrix(4, 4);
-  theta = theta * PI/180; //converting from deg to rad
+  theta = theta * M_PI/180; //converting from deg to rad
   result->m[0][0] = 1;
   result->m[1][1] = cos(theta);
   result->m[2][1] = sin(theta);
@@ -241,7 +239,7 @@ angle of rotation and Y as the axis of rotation.
 ====================*/
 struct matrix * make_rotY(double theta) {
   struct matrix * result = new_matrix(4, 4);
-  theta = theta * PI/180; //converting from deg to rad
+  theta = theta * M_PI/180; //converting from deg to rad
   result->m[0][0] = cos(theta);
   result->m[0][2] = -sin(theta);
   result->m[1][1] = 1;
@@ -259,7 +257,7 @@ angle of rotation and Z as the axis of rotation.
 ====================*/
 struct matrix * make_rotZ(double theta) {
   struct matrix * result = new_matrix(4, 4);
-  theta = theta * PI/180; //converting from deg to rad
+  theta = theta * M_PI/180; //converting from deg to rad
   result->m[0][0] = cos(theta);
   result->m[0][1] = -sin(theta);
   result->m[1][0] = sin(theta);
