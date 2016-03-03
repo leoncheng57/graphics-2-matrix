@@ -15,16 +15,20 @@ int main() {
   struct matrix *transform;
 
   //testing
+  color c;
+  c.red = 180;
+  c.green = 21;
+  c.blue = 32;
+
   edges = new_matrix(4, 4);
-  add_point(edges, 123, 421, 312);
-  add_point(edges, 123, 421, 312);
-  add_point(edges, 123, 421, 312);
-  add_point(edges, 123, 421, 312);
-  add_point(edges, 123, 421, 312);
-  add_point(edges, 12903,421, 532);
+  add_edge(edges, 1, 1, 1, 2, 2, 2);
+  add_edge(edges, 2, 2, 2, 3, 3, 3);
+  add_edge(edges, 3, 3, 3, 4, 4, 4);
   // ident(edges);
   // scalar_mult(9, edges);
   print_matrix(edges);
+
+  draw_lines(edges, s, c);
 
   transform = make_rotZ(30);
   // print_matrix(transform);
