@@ -52,7 +52,7 @@ int main() {
   matrix_mult(transform, edges);
   draw_lines(edges, s, c);
 
-  //display(s);
+  display(s);
   save_extension(s, "lines.png");
   //end testing
 
@@ -92,18 +92,10 @@ int main() {
   //draw_lines(edges, s, c);
   double n2;
   for (n2 = 40; n2>0; n2--){
-    int fd;
-    int num=0;
-    fd = open("dev/random", O_RDONLY);
-    read(fd, &num, sizeof(num));
-    c.blue = num%MAX_COLOR;
-    fd = open("dev/random", O_RDONLY);
-    read(fd, &num, sizeof(num));
-    c.green = num%MAX_COLOR;
-    fd = open("dev/random", O_RDONLY);
-    read(fd, &num, sizeof(num));
-    c.red = num%MAX_COLOR;
-    printf("num: %d\n", num);
+    c.red = (c.red + 1234) % MAX_COLOR;
+    c.blue = (c.blue * 7) % MAX_COLOR;
+    c.green = (c.green * 3) % MAX_COLOR;
+    printf("%d\n", c.red);
 
     double x, y;
     x = rand()%500;
@@ -113,6 +105,7 @@ int main() {
     add_edge(edges, x, y, 0, x, y+50, 0);  
     add_edge(edges, x+50, y, 0, x+50, y+50, 0);  
     add_edge(edges, x, y+50, 0, x+50, y+50, 0);  
+
     draw_lines(edges, s, c);
   }
   
