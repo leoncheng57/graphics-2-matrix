@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <errno.h>
 
 #include "ml6.h"
 #include "display.h"
@@ -57,14 +60,13 @@ int main() {
   //now for the cool
   clear_screen(s);
 
+
+  //DRAW CIRCLES
   edges = new_matrix(4, 1);
   add_edge(edges, 0, 0, 0, 20, 20, 0);  
   //draw_lines(edges, s, c);
-
-
-  
   double n;
-  for (n = 20; n>0; n--){
+  for (n = 30; n>0; n--){
     c.red = rand() % MAX_COLOR;
     c.blue = rand() % MAX_COLOR;
     c.green = rand() % MAX_COLOR;
@@ -83,6 +85,35 @@ int main() {
       matrix_mult(transform, edges);
       //draw_lines(edges, s, c);
     }
+  }
+
+  //DRAW SQUARES
+  edges = new_matrix(4, 1);
+  //draw_lines(edges, s, c);
+  double n2;
+  for (n2 = 40; n2>0; n2--){
+    int fd;
+    int num=0;
+    fd = open("dev/random", O_RDONLY);
+    read(fd, &num, sizeof(num));
+    c.blue = num%MAX_COLOR;
+    fd = open("dev/random", O_RDONLY);
+    read(fd, &num, sizeof(num));
+    c.green = num%MAX_COLOR;
+    fd = open("dev/random", O_RDONLY);
+    read(fd, &num, sizeof(num));
+    c.red = num%MAX_COLOR;
+    printf("num: %d\n", num);
+
+    double x, y;
+    x = rand()%500;
+    y = rand()%500;
+
+    add_edge(edges, x, y, 0, x+50, y, 0);  
+    add_edge(edges, x, y, 0, x, y+50, 0);  
+    add_edge(edges, x+50, y, 0, x+50, y+50, 0);  
+    add_edge(edges, x, y+50, 0, x+50, y+50, 0);  
+    draw_lines(edges, s, c);
   }
   
   display(s);
