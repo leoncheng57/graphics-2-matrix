@@ -15,7 +15,7 @@ int main() {
 
   clear_screen(s);
 
-  //testing  
+  //begin testing  
   struct matrix *edges;
   struct matrix *transform;
 
@@ -49,12 +49,48 @@ int main() {
   matrix_mult(transform, edges);
   draw_lines(edges, s, c);
 
+  //display(s);
+  save_extension(s, "lines.png");
   //end testing
+
+  
+  //now for the cool
+  clear_screen(s);
+
+  edges = new_matrix(4, 1);
+  add_edge(edges, 0, 0, 0, 20, 20, 0);  
+  //draw_lines(edges, s, c);
+
+
+  
+  double n;
+  for (n = 20; n>0; n--){
+    c.red = rand() % MAX_COLOR;
+    c.blue = rand() % MAX_COLOR;
+    c.green = rand() % MAX_COLOR;
+    double angle,x, y;
+    x = rand()%500;
+    y = rand()%500;
+    angle = 0;
+    for (angle=0;angle<360;angle+=1){
+      transform = make_rotZ(angle);
+      matrix_mult(transform, edges);
+      //draw_lines(edges, s, c);
+      transform = make_translate(x, y, 0);
+      matrix_mult(transform, edges);
+      draw_lines(edges, s, c);
+      transform = make_translate(-1*x, -1*y, 0);
+      matrix_mult(transform, edges);
+      //draw_lines(edges, s, c);
+    }
+  }
+  
+  display(s);
+  save_extension(s, "cool.png");
+  //end cool
 
   free_matrix( transform );
   free_matrix( edges );
 
-  display(s);
-  save_extension(s, "lines.png");
 
 }
