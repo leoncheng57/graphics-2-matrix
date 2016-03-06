@@ -13,33 +13,30 @@ int main() {
   screen s;
   color c;
 
+  clear_screen(s);
+
+  //testing  
+  struct matrix *edges;
+  struct matrix *transform;
+
   c.red = 0;
   c.green = MAX_COLOR;
   c.blue = 0;
 
-  clear_screen(s);
-
-  struct matrix *edges;
-  struct matrix *transform;
-
-  //testing
-
   edges = new_matrix(4, 4);
-  add_edge(edges, 1, 1, 1, 200, 200, 200);
-  add_edge(edges, 2, 2, 2, 300, 300, 300);
-  add_edge(edges, 3, 3, 3, 400, 400, 400);
-  // ident(edges);
-  // scalar_mult(9, edges);
+  add_edge(edges, 100, 100, 100, 200, 200, 200);
+  print_matrix(edges);
+  draw_lines(edges, s, c);
+
+  c.blue = MAX_COLOR;
+  transform = make_translate(200, 200, 0);
+  print_matrix(transform);
+  matrix_mult(transform, edges);
   print_matrix(edges);
 
   draw_lines(edges, s, c);
 
-  transform = make_rotZ(30);
-  // print_matrix(transform);
 
-
-  // matrix_mult(transform, edges);
-  // print_matrix(edges);
   //end testing
 
   free_matrix( transform );

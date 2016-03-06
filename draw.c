@@ -23,7 +23,7 @@ void add_point( struct matrix * points, int x, int y, int z) {
 	points->m[2][points->lastcol]=z;
 	points->m[3][points->lastcol]=1;
 	points->lastcol++;
-	print_matrix(points);
+	//print_matrix(points);
 }
 
 /*======== void add_edge() ==========

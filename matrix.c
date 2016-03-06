@@ -136,29 +136,28 @@ a*b -> b
 void matrix_mult(struct matrix *a, struct matrix *b) {
   struct matrix * result;
   result = new_matrix(a->cols, b->rows);
-
-  int h, i, j;
+  // TODO: its all wrong!!!!!
+  int h, r, c;
   for (h=0;h < a->rows;h++){
     double * row = a->m[h];
 
-    for (i=0;i<b->rows;i++){
-      double sum = 0; //sum of row*col
-      for (j=0; j<b->cols;j++){
+    for (c=0;c<b->cols;c++){
+      double sum = 0; //sum of row * col
+      for(r=0;r<b->rows;r++){
         // printf("row[%d]: %f \n", j, row[j]);
         // printf("b->m[%d][%d]: %f \n", i, j, b->m[i][j]);
         // printf("row[j] * b->m[i][j]: %f\n", row[j] * b->m[i][j]);
-        sum += row[j] * b->m[i][j];
+	sum += row[r] * b->m[r][c];
       }
-      //one complete col
-      result->m[h][i] = sum;
+      result->m[h][c] = sum;
       // printf("sum=m[%d][%d]=%f\n", h, i, sum );
       // printf("\n");
     }
   }
   //Copy result matrix to b
-  for(i=0; i<b->rows; i++){
-    for(j=0; j<b->cols; j++){
-      b->m[i][j] = result->m[i][j];
+  for(r=0; r<b->rows; r++){
+    for(c=0; c<b->cols; c++){
+      b->m[r][c] = result->m[r][c];
     }
   }
 }
